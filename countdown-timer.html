@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        
+        <style>
+            /* html-css-js-only */
+            /*
+            .border {border:1px solid #DDE2E6}
+            .text-center {text-align: center}
+            .p-3 {padding:14px}
+            */
+            
+            .font-sm {font-size:10px;word-spacing: 6px}
+            .text-pink {color:#CA858F}
+            .w-33 {width:33.33%}
+            table#timerTb td{padding:0 2px 0 2px!important;}
+        </style>
+    </head>
+    <body>
+<!--PC-->        
+        <nav class="container">
+            <div class="w-33 text-center">
+                <div class="border d-none d-md-block" style="width:200px">
+                    <div class="pt-2 pb-2 pl-2 pr-2">
+                        <span class="text-pink">NEXT WINNER IN</span><br>
+                        <div id="timer">
+                            <span id="demo" class="pl-2"></span><br>
+                            <span class="font-sm">DAYS HOURS MINS SECS</span>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+<!--MB-->        
+        <div class="border-top border-bottom d-block d-md-none mb-2">
+                <div class="pl-2 pr-2 text-center"> 
+                    <table id="timerTb" class="mx-auto">
+                        <tr>
+                            <td rowspan="2" class="small">NEXT WINNER IN</td>
+                            <td id="days" class="small text-pink"></td>
+                            <td id="hours" class="small text-pink"></td>
+                            <td id="minutes" class="small text-pink"></td>
+                            <td id="seconds" class="small text-pink"></td>
+                        </tr>
+                        <tr>
+                            <td class="font-sm text-pink">DAYS</td>
+                            <td class="font-sm text-pink">HOURS</td>
+                            <td class="font-sm text-pink">MINS</td>
+                            <td class="font-sm text-pink">SECS</td>
+                        </tr>
+                    </table>
+                    <span id="demo-1" class="small"></span>
+                </div>
+            </div>
+        <script>
+ //count down timer
+            // Set the date we're counting down to
+            var countDownDate = new Date("2018-10-15T24:00:00").getTime();
+            
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+                
+                // Get todays date and time
+                var now = new Date().getTime();
+                
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+                
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24)).toLocaleString(undefined,{minimumIntegerDigits: 2});
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toLocaleString(undefined,{minimumIntegerDigits: 2});
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toLocaleString(undefined,{minimumIntegerDigits: 2});
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000).toLocaleString(undefined,{minimumIntegerDigits: 2});
+                
+                // Output the result in an element with id="demo"
+              
+                document.getElementById("demo").innerHTML = days + ": " + hours + ": "
+                    + minutes + ": " + seconds + " ";
+                
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+                /*
+                document.getElementById("demo-1").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";*/
+                // If the count down is over, write some text 
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                    document.getElementById("demo-1").innerHTML = "EXPIRED";
+                }
+            }, 0);           
+            
+        </script>
+        
+    </body>
+</html>
